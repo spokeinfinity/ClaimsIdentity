@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome User</h1>
+    <br>
+    <form method="post">
+        <div class="form-row">
+            <div class="form-group col-md 4">
+                <span asp-validation-for="Address.NumberString" class="text-danger"></span>
+                <label asp-for="Address.NumberString"></label><br>
+                <input asp-for="Address.NumberString" />
+            </div>
+         
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Zatwierdź</button>
+    </form>
+    @if (Model.Address != null)
+            {
+                <br/><br/>
+                @if (Model.Address.Napis == "Żadna")
+                {
+                    <p>Liczba @Model.Address.Number nie spełnia warunków FizzBuzz </p>
+                }
+                else if(Model.Address.Napis == "Błąd")
+                {
+                    <p>Podano złe dane!</p>
+                }
+                else if (!String.IsNullOrEmpty(Model.Address.Napis))
+                {
+                    <p>@Model.Address.Napis</p>
+                }
+            }
+</div>
